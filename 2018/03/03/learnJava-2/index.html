@@ -1,0 +1,854 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="java," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="什么是面向对象？创建类的方法？创建对象的方法？对象和对象的引用？对象的使用方法？多对象的创建？匿名对象的创建和使用方法？什么是重载？构造函数的作用？this 的使用方法？static 的作用？">
+<meta name="keywords" content="java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java 笔记（3）">
+<meta property="og:url" content="http://yoursite.com/2018/03/03/learnJava-2/index.html">
+<meta property="og:site_name" content="gn_139的博客">
+<meta property="og:description" content="什么是面向对象？创建类的方法？创建对象的方法？对象和对象的引用？对象的使用方法？多对象的创建？匿名对象的创建和使用方法？什么是重载？构造函数的作用？this 的使用方法？static 的作用？">
+<meta property="og:image" content="http://yoursite.com/2018/03/03/learnJava-2/2lhu96Q.png">
+<meta property="og:image" content="http://yoursite.com/2018/03/03/learnJava-2/dui3.png">
+<meta property="og:updated_time" content="2018-03-13T08:53:53.730Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java 笔记（3）">
+<meta name="twitter:description" content="什么是面向对象？创建类的方法？创建对象的方法？对象和对象的引用？对象的使用方法？多对象的创建？匿名对象的创建和使用方法？什么是重载？构造函数的作用？this 的使用方法？static 的作用？">
+<meta name="twitter:image" content="http://yoursite.com/2018/03/03/learnJava-2/2lhu96Q.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/03/03/learnJava-2/"/>
+
+
+
+
+
+  <title> Java 笔记（3） | gn_139的博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?b4a4967d41c047b1ecd90f89c5899f89";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">gn_139的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">技术相关</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/03/learnJava-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="gn_139">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="gn_139的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Java 笔记（3）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-03T11:45:43+08:00">
+                2018-03-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android-补完计划/" itemprop="url" rel="index">
+                    <span itemprop="name">Android 补完计划</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android-补完计划/Java-学习/" itemprop="url" rel="index">
+                    <span itemprop="name">Java 学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>什么是面向对象？创建类的方法？创建对象的方法？对象和对象的引用？对象的使用方法？多对象的创建？<br>匿名对象的创建和使用方法？什么是重载？构造函数的作用？this 的使用方法？static 的作用？<br><a id="more"></a></p>
+<h1 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h1><ul>
+<li>面向对象是一种编程方法；</li>
+<li>面向对象是一种思维方式；</li>
+<li>面向对象不是一种编程语言；</li>
+</ul>
+<h1 id="面向对象思维方式"><a href="#面向对象思维方式" class="headerlink" title="面向对象思维方式"></a>面向对象思维方式</h1><ul>
+<li>首先确定谁来做，其次确定怎么做；</li>
+<li>首先考虑整体，其次考虑局部；</li>
+<li>首先考虑抽象，其次考虑具体；</li>
+</ul>
+<h1 id="定义类的方法"><a href="#定义类的方法" class="headerlink" title="定义类的方法"></a>定义类的方法</h1><pre><code>class 类名{
+    属性；
+    方法；
+}
+</code></pre><ul>
+<li>属性也叫 <strong>成员变量</strong> ，主要用于描述类的状态；</li>
+<li>方法也叫 <strong>成员方法</strong> ，主要用于描述类的行为；</li>
+</ul>
+<h1 id="类的表示方法"><a href="#类的表示方法" class="headerlink" title="类的表示方法"></a>类的表示方法</h1><img src="/2018/03/03/learnJava-2/2lhu96Q.png" alt="2lhu96Q.png" title="">
+<h1 id="生成对象的方法"><a href="#生成对象的方法" class="headerlink" title="生成对象的方法"></a>生成对象的方法</h1><p>格式：<code>类名 对象名 = new 类ming();</code></p>
+<p>例子：<code>Dog dog = new Dog();</code></p>
+<img src="/2018/03/03/learnJava-2/dui3.png" alt="dui3.png" title="">
+<h1 id="类和对象的关系"><a href="#类和对象的关系" class="headerlink" title="类和对象的关系"></a>类和对象的关系</h1><p>“某一只”和“某一类”的区别。对象是类的具体存在，而类是对象的抽象化概念。</p>
+<h1 id="对象的使用方法"><a href="#对象的使用方法" class="headerlink" title="对象的使用方法"></a>对象的使用方法</h1><p>使用对象调用变量和函数：</p>
+<ol>
+<li><code>对象.变量</code></li>
+<li><code>对象.函数名()</code></li>
+</ol>
+<h1 id="生成多个对象"><a href="#生成多个对象" class="headerlink" title="生成多个对象"></a>生成多个对象</h1><pre><code>Dog d1 = new Dog();
+Dog d2 = new Dog();
+</code></pre><h1 id="匿名对象的使用"><a href="#匿名对象的使用" class="headerlink" title="匿名对象的使用"></a>匿名对象的使用</h1><p>可以不定义对象的引用名称，而直接调用这个对象的方法。这样的对象就称为 <strong>匿名对象</strong>。</p>
+<p>例： <code>new Dog().jump();</code></p>
+<h1 id="函数的重载"><a href="#函数的重载" class="headerlink" title="函数的重载"></a>函数的重载</h1><p>重载关系判断条件：</p>
+<ol>
+<li>两个函数在同一类当中；</li>
+<li>两个函数的函数名相同；</li>
+<li>两个函数的参数列表不同；</li>
+</ol>
+<p>根据参数的不同，来区分使用重载函数。</p>
+<h1 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h1><p>特点：</p>
+<ol>
+<li>没有返回值类型的定义；</li>
+<li>函数名与类名相同；</li>
+<li>只能用 <code>new</code> 来调用构造函数；</li>
+<li>当没有自定义构造函数时，编译器会自动添加默认的构造函数；</li>
+</ol>
+<p>作用：</p>
+<ol>
+<li>生成类的对象；</li>
+<li>自定义构造函数，为成员变量赋初始值；</li>
+</ol>
+<p>注意：自定义构造函数后编译器不会再添加默认的构造函数。</p>
+<h1 id="使用-this-调用成员变量和成员函数"><a href="#使用-this-调用成员变量和成员函数" class="headerlink" title="使用 this 调用成员变量和成员函数"></a>使用 this 调用成员变量和成员函数</h1><pre><code>public class Person {
+
+    String name;
+
+    void talk(){
+        System.out.println(&quot;my name is &quot;+ this.name);
+    }
+}
+</code></pre><p><code>this</code> 在代码中代表调用了 talk() 函数的对象。因此，<code>this</code> 多用于区分成员变量和参数，如下：</p>
+<pre><code>public class Person {
+
+    String name;
+
+    void talk(String name){
+        System.out.println(&quot;my name is &quot;+ this.name);
+    }
+}
+</code></pre><h1 id="调用构造函数"><a href="#调用构造函数" class="headerlink" title="调用构造函数"></a>调用构造函数</h1><pre><code>Person(String name){
+        this.name = name;
+    }
+
+Person(String name, int age){
+    this(name);
+    this.age = age;
+}
+</code></pre><p><code>this</code> 后跟括号代表调用构造函数的重载函数，具体调用哪个由参数决定。<br>注意：此处 <code>this</code> 必须是第一条语句。</p>
+<h1 id="静态成员变量的语法特点"><a href="#静态成员变量的语法特点" class="headerlink" title="静态成员变量的语法特点"></a>静态成员变量的语法特点</h1><p>在声明成员变量时，在类型定义前加上 <code>static</code> 关键字后，此成员变量即为静态成员变量，例：<code>static int i;</code>。</p>
+<p>语法特点：</p>
+<ol>
+<li>可以直接使用类名调用静态成员变；</li>
+<li>所有对象的静态变量都是同一个；</li>
+</ol>
+<h1 id="静态函数的语法特点"><a href="#静态函数的语法特点" class="headerlink" title="静态函数的语法特点"></a>静态函数的语法特点</h1><p>在函数的定义前加上 <code>static</code> 关键字，即为静态函数。</p>
+<p>语法特点：</p>
+<ol>
+<li>可以直接用类名调用，无需生成对象；</li>
+<li>在静态函数中不能直接使用非静态的成员变量；（只有静态成员变量能在没有对象的情况下调用）</li>
+</ol>
+<h1 id="静态代码块的语法特点"><a href="#静态代码块的语法特点" class="headerlink" title="静态代码块的语法特点"></a>静态代码块的语法特点</h1><pre><code>static {
+    代码；    
+}
+</code></pre><p>语法格式如上。主要作用是为静态变量赋初始值。</p>
+<p>语法特点：在装载类时执行。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/08/learnJava-3/" rel="next" title="Java 笔记 （4）">
+                <i class="fa fa-chevron-left"></i> Java 笔记 （4）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/02/28/hexoGithub/" rel="prev" title="Hexo 提交更新到 github 时报错">
+                Hexo 提交更新到 github 时报错 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="gn_139" />
+          <p class="site-author-name" itemprop="name">gn_139</p>
+           
+              <p class="site-description motion-element" itemprop="description">小白的读后感</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/gn139" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#面向对象"><span class="nav-number">1.</span> <span class="nav-text">面向对象</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#面向对象思维方式"><span class="nav-number">2.</span> <span class="nav-text">面向对象思维方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#定义类的方法"><span class="nav-number">3.</span> <span class="nav-text">定义类的方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#类的表示方法"><span class="nav-number">4.</span> <span class="nav-text">类的表示方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#生成对象的方法"><span class="nav-number">5.</span> <span class="nav-text">生成对象的方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#类和对象的关系"><span class="nav-number">6.</span> <span class="nav-text">类和对象的关系</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#对象的使用方法"><span class="nav-number">7.</span> <span class="nav-text">对象的使用方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#生成多个对象"><span class="nav-number">8.</span> <span class="nav-text">生成多个对象</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#匿名对象的使用"><span class="nav-number">9.</span> <span class="nav-text">匿名对象的使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#函数的重载"><span class="nav-number">10.</span> <span class="nav-text">函数的重载</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#构造函数"><span class="nav-number">11.</span> <span class="nav-text">构造函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用-this-调用成员变量和成员函数"><span class="nav-number">12.</span> <span class="nav-text">使用 this 调用成员变量和成员函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#调用构造函数"><span class="nav-number">13.</span> <span class="nav-text">调用构造函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#静态成员变量的语法特点"><span class="nav-number">14.</span> <span class="nav-text">静态成员变量的语法特点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#静态函数的语法特点"><span class="nav-number">15.</span> <span class="nav-text">静态函数的语法特点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#静态代码块的语法特点"><span class="nav-number">16.</span> <span class="nav-text">静态代码块的语法特点</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">gn_139</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

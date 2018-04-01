@@ -1,0 +1,835 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="java," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="什么是环境变量？JDK里面有些什么？什么是JRE？什么是变量？变量如何声明？变量分为哪些类型？基本数据类型有哪些？">
+<meta name="keywords" content="java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java 笔记（1）">
+<meta property="og:url" content="http://yoursite.com/2018/02/27/learnJava/index.html">
+<meta property="og:site_name" content="gn_139的博客">
+<meta property="og:description" content="什么是环境变量？JDK里面有些什么？什么是JRE？什么是变量？变量如何声明？变量分为哪些类型？基本数据类型有哪些？">
+<meta property="og:image" content="http://yoursite.com/2018/02/27/learnJava/59dcd14000015d9f11960588.png">
+<meta property="og:updated_time" content="2018-02-28T15:01:50.199Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java 笔记（1）">
+<meta name="twitter:description" content="什么是环境变量？JDK里面有些什么？什么是JRE？什么是变量？变量如何声明？变量分为哪些类型？基本数据类型有哪些？">
+<meta name="twitter:image" content="http://yoursite.com/2018/02/27/learnJava/59dcd14000015d9f11960588.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/02/27/learnJava/"/>
+
+
+
+
+
+  <title> Java 笔记（1） | gn_139的博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?b4a4967d41c047b1ecd90f89c5899f89";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">gn_139的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">技术相关</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/27/learnJava/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="gn_139">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="gn_139的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Java 笔记（1）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-27T10:16:07+08:00">
+                2018-02-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android-补完计划/" itemprop="url" rel="index">
+                    <span itemprop="name">Android 补完计划</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android-补完计划/Java-学习/" itemprop="url" rel="index">
+                    <span itemprop="name">Java 学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>什么是环境变量？JDK里面有些什么？什么是JRE？什么是变量？变量如何声明？变量分为哪些类型？<br>基本数据类型有哪些？<br><a id="more"></a></p>
+<h1 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h1><p><strong>环境变量</strong> 通常是指在操作系统当中，用来指定操作系统运行时需要的一些参数；通常是一系列的 <em>键值对</em>。</p>
+<p><em>Path环境变量</em> 是操作系统外部命令搜索路径。（在cmd中输入的命令其实就是运行的exe文件名称，而系统就是在Path的路径中按照名称搜索该文件然后执行）</p>
+<p><em>classpath环境变量</em> 是类文件搜索路径。（同命令运行方式，类文件运行也需要在环境变量的路径中搜索 class 文件；另相对路径中“.”代表当前目录）</p>
+<h1 id="JDK"><a href="#JDK" class="headerlink" title="JDK"></a>JDK</h1><p><code>bin</code> 目录下包含 Java 所需的全部命令文件。</p>
+<p><code>demo</code> 和 <code>sample</code> 目录下是一些代码实例。</p>
+<p><code>include</code> 目录下是一些c语言文件。</p>
+<p><code>jre</code> 目录下是 <em>Java 运行时环境</em></p>
+<p><code>lib</code> 目录下是 Java 所需的包文件</p>
+<p><code>src.zip</code> 中是 Java JDK 的一部分源文件</p>
+<h1 id="JRE"><a href="#JRE" class="headerlink" title="JRE"></a>JRE</h1><p>JRE 是 Java Runtime Environment 即 <em>Java 运行时环境</em> ，包括以下几个部分：</p>
+<ol>
+<li>Java 虚拟机；</li>
+<li>Java 平台核心类文件；</li>
+<li>其他支持文件；</li>
+</ol>
+<p><code>JVM</code> (Java 虚拟机) 是 Java Virtual Machine 的缩写，是一个由软件虚拟出来的计算机。</p>
+<p>编译器编译的 class 文件可以在任一虚拟机上运行，而不同的系统可以有不同的虚拟机，这样就保证了 Java 程序的跨平台通用性。</p>
+<h1 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h1><p><strong>变量</strong> 是用来在计算机当中存储信息的工具，在 Java 语言中你需要声明语句来指定变量的存储位置和所需的内存空间。</p>
+<h2 id="变量的声明方法"><a href="#变量的声明方法" class="headerlink" title="变量的声明方法"></a>变量的声明方法</h2><pre><code>int age; //这就是一个声明语句，“int” 指定变量的类型，“age” 指定变量的名称，“;” 表示语句结束。
+</code></pre><p>该语句使计算机分配足够的空间，用于存储一个整数，而这个整数的名字叫做 age。</p>
+<p>声明语句要解决两个问题：</p>
+<ol>
+<li>变量放在哪；</li>
+<li>变量占多大空间；</li>
+</ol>
+<p>具体到该语句， int 数据类型是 Java 定义的一种数据类型，它有一个固定的范围来存储整数，由此确定了变量 age 所占空间大小。而变量名 “age” 则作为变量位置的标识，从而解决变量在哪里的问题。</p>
+<h2 id="变量的类型"><a href="#变量的类型" class="headerlink" title="变量的类型"></a>变量的类型</h2><img src="/2018/02/27/learnJava/59dcd14000015d9f11960588.png" alt="59dcd14000015d9f11960588.png" title="">
+<h2 id="变量的赋值"><a href="#变量的赋值" class="headerlink" title="变量的赋值"></a>变量的赋值</h2><pre><code>int age = 20; //&quot;=&quot;为赋值号，“20”为变量值。
+</code></pre><h2 id="变量命名规范"><a href="#变量命名规范" class="headerlink" title="变量命名规范"></a>变量命名规范</h2><ol>
+<li>变量命名规范：<ul>
+<li>应该以字母，下划线或者美元符号开头；</li>
+<li>后面跟字母，下划线或者美元符号或者数字；</li>
+<li>Java 变量名没有长度限制；</li>
+<li>Java 变量名对大小写敏感；</li>
+</ul>
+</li>
+<li>驼峰命名法。</li>
+</ol>
+<h1 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h1><h2 id="布尔型变量"><a href="#布尔型变量" class="headerlink" title="布尔型变量"></a>布尔型变量</h2><p><code>boolean</code> 适用于逻辑运算，一般用于程序流程控制。</p>
+<h2 id="字符型变量"><a href="#字符型变量" class="headerlink" title="字符型变量"></a>字符型变量</h2><ul>
+<li><code>char</code> 数据类型用来表示通常意义上的字符；</li>
+<li><em>字符</em> 在这里是指用单引号包括起来的单个字符；</li>
+<li>Java 字符使用 Unicode 字符集；</li>
+</ul>
+<h2 id="数值型变量"><a href="#数值型变量" class="headerlink" title="数值型变量"></a>数值型变量</h2><ol>
+<li>数值类型： <ul>
+<li>byte  占用1字节空间，范围是 -128~127；</li>
+<li>short 占用2字节空间，范围是 -2^15~2^15-1;</li>
+<li>int   占用4字节空间，范围是 -2^31~2^31-1;</li>
+<li>long  占用8字节空间，范围是 -2^63~2^63-1;</li>
+</ul>
+</li>
+<li>浮点类型：<ul>
+<li>float 占用4字节空间，范围是 -3.403E38~3.403E8；</li>
+<li>double 占用4字节空间，范围是 -1.798E308~1.798E308；</li>
+</ul>
+</li>
+</ol>
+<h3 id="整数类型"><a href="#整数类型" class="headerlink" title="整数类型"></a>整数类型</h3><ul>
+<li>Java 语言整型常量三种表现方式<ul>
+<li>十进制 同正常书写；</li>
+<li>八进制 要求以0开头；</li>
+<li>十六进制 要求以0x或0X开头；</li>
+</ul>
+</li>
+<li>Java 语言的整型常量默认为 int 类型</li>
+<li>声明 long 类型可以后加“l”或“L”，如：<code>long l = 3L</code></li>
+</ul>
+<h3 id="浮点类型"><a href="#浮点类型" class="headerlink" title="浮点类型"></a>浮点类型</h3><p><strong>字面量</strong> 指数值类型在代码中的字面数量，需要注意：</p>
+<ol>
+<li>整数字面量为整型（int）</li>
+<li>小数字面量为双精度浮点型（double）</li>
+</ol>
+<p>因此在给 float 类型赋值时不能直接使用字面量，而需要在其后加“F”或“f”，让字面量被识别为 float类型。</p>
+<p>不能将范围更大的类型赋值给范围更小的类型，避免损失精度。（在进行字面量赋值时，<code>byte</code> 和 <code>short</code> 例外，但字面量大小不应超过其范围）</p>
+<p>数值类型进行计算时，计算结果的类型以范围最大的变量类型为准。</p>
+<p>强制转换类型可以解决赋值范围的错误，但是会造成误差，请谨慎使用。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/27/relativePath/" rel="next" title="路径相关">
+                <i class="fa fa-chevron-left"></i> 路径相关
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/30/learnAndroid-Activity/" rel="prev" title="Google 官方文档学习笔记 (Activity)">
+                Google 官方文档学习笔记 (Activity) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="gn_139" />
+          <p class="site-author-name" itemprop="name">gn_139</p>
+           
+              <p class="site-description motion-element" itemprop="description">小白的读后感</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/gn139" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#环境变量"><span class="nav-number">1.</span> <span class="nav-text">环境变量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JDK"><span class="nav-number">2.</span> <span class="nav-text">JDK</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JRE"><span class="nav-number">3.</span> <span class="nav-text">JRE</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#变量"><span class="nav-number">4.</span> <span class="nav-text">变量</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#变量的声明方法"><span class="nav-number">4.1.</span> <span class="nav-text">变量的声明方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量的类型"><span class="nav-number">4.2.</span> <span class="nav-text">变量的类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量的赋值"><span class="nav-number">4.3.</span> <span class="nav-text">变量的赋值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量命名规范"><span class="nav-number">4.4.</span> <span class="nav-text">变量命名规范</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基本数据类型"><span class="nav-number">5.</span> <span class="nav-text">基本数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#布尔型变量"><span class="nav-number">5.1.</span> <span class="nav-text">布尔型变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符型变量"><span class="nav-number">5.2.</span> <span class="nav-text">字符型变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数值型变量"><span class="nav-number">5.3.</span> <span class="nav-text">数值型变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#整数类型"><span class="nav-number">5.3.1.</span> <span class="nav-text">整数类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#浮点类型"><span class="nav-number">5.3.2.</span> <span class="nav-text">浮点类型</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">gn_139</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,793 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="hexo,git,markdown," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="博客搭建过程记录与总结从2017年3月22日到4月26日经过长时间与拖延症的斗争，我终于使用hexo + github pages的方法完成了个人博客的搭建。我搭建个人博客的起因是在进入 android 开发工作大半年以后，我猛然发现对于之前工作过程中遇到的各种问题和解决办法并没有有效的记录和总结，以致于在以后遇到同样的问题时，只能依靠脆弱的记忆以及在大量的项目代码中寻找这些低效率的办法。那么，现">
+<meta name="keywords" content="hexo,git,markdown">
+<meta property="og:type" content="article">
+<meta property="og:title" content="博客搭建过程记录与总结">
+<meta property="og:url" content="http://yoursite.com/2017/06/06/firstBlog/index.html">
+<meta property="og:site_name" content="gn_139的博客">
+<meta property="og:description" content="博客搭建过程记录与总结从2017年3月22日到4月26日经过长时间与拖延症的斗争，我终于使用hexo + github pages的方法完成了个人博客的搭建。我搭建个人博客的起因是在进入 android 开发工作大半年以后，我猛然发现对于之前工作过程中遇到的各种问题和解决办法并没有有效的记录和总结，以致于在以后遇到同样的问题时，只能依靠脆弱的记忆以及在大量的项目代码中寻找这些低效率的办法。那么，现">
+<meta property="og:updated_time" content="2017-06-06T13:48:26.896Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="博客搭建过程记录与总结">
+<meta name="twitter:description" content="博客搭建过程记录与总结从2017年3月22日到4月26日经过长时间与拖延症的斗争，我终于使用hexo + github pages的方法完成了个人博客的搭建。我搭建个人博客的起因是在进入 android 开发工作大半年以后，我猛然发现对于之前工作过程中遇到的各种问题和解决办法并没有有效的记录和总结，以致于在以后遇到同样的问题时，只能依靠脆弱的记忆以及在大量的项目代码中寻找这些低效率的办法。那么，现">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/06/06/firstBlog/"/>
+
+
+
+
+
+  <title> 博客搭建过程记录与总结 | gn_139的博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?b4a4967d41c047b1ecd90f89c5899f89";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">gn_139的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">技术相关</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/06/firstBlog/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="gn_139">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="gn_139的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                博客搭建过程记录与总结
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-06T14:33:47+08:00">
+                2017-06-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/blog相关/" itemprop="url" rel="index">
+                    <span itemprop="name">blog相关</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="博客搭建过程记录与总结"><a href="#博客搭建过程记录与总结" class="headerlink" title="博客搭建过程记录与总结"></a>博客搭建过程记录与总结</h1><p>从2017年3月22日到4月26日经过长时间与拖延症的斗争，我终于使用<code>hexo + github pages</code>的方法完成了个人博客的搭建。我搭建个人博客的起因是在进入 android 开发工作大半年以后，我猛然发现对于之前工作过程中遇到的各种问题和解决办法并没有有效的记录和总结，以致于在以后遇到同样的问题时，只能依靠脆弱的记忆以及在大量的项目代码中寻找这些低效率的办法。那么，现在就是体现个人博客价值的时候了，让我好好的理一理搭建博客过程中学习到的东西和遇到的坑。</p>
+<a id="more"></a>
+<h2 id="Hexo-GitHub-pages"><a href="#Hexo-GitHub-pages" class="headerlink" title="Hexo + GitHub pages"></a>Hexo + GitHub pages</h2><p>首先要感谢这两篇博客：</p>
+<blockquote>
+<ol>
+<li><a href="http://www.jianshu.com/p/834d7cc0668d" target="_blank" rel="external">我的博客是如何搭建的（github pages + HEXO + 域名绑定）</a></li>
+<li><a href="http://crazymilk.github.io/2015/12/28/GitHub-Pages-Hexo搭建博客/#more" target="_blank" rel="external">GitHub Pages + Hexo 搭建博客</a></li>
+</ol>
+</blockquote>
+<p>第一篇博客让我初步完成了博客搭建的流程，第二篇博客让我实现了博客的多终端管理。  </p>
+<p>接下来是我对搭建过程的总结：  </p>
+<h3 id="1-github-pages"><a href="#1-github-pages" class="headerlink" title="1. github pages"></a>1. github pages</h3><p>只需要创建 github 仓库，注意仓库命名时需按照<code>yuorusername.github.io</code>的格式。</p>
+<h3 id="2-hexo"><a href="#2-hexo" class="headerlink" title="2. hexo"></a>2. hexo</h3><p>关于 hexo 安装、使用可参考 <a href="https://hexo.io/zh-cn/docs/index.html" target="_blank" rel="external">hexo官方文档</a><br>需要注意的是 hexo 和 github pages 的关联配置问题。在站点目录下的<code>_config.yml</code>文件中修改以下部分</p>
+<pre><code># Deployment
+    ## Docs: https://hexo.io/docs/deployment.html
+    deploy:
+    type: git
+    repo: https://github.com/yourusername/yourusername.github.io.git
+    branch: master
+</code></pre><p>其中 repo 应为 github 仓库 https 地址。（由于初次搭建博客，所以我的主题使用的是第一篇博客中提到的<a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="external">next主题</a>）  </p>
+<blockquote>
+<p>到此已经初步完成博客的搭建工作，可是我发现这样只能在一个终端操作站点，当更换电脑时就坑爹了。所以我又找到了第二篇关于在远程仓库保存站点目录的博客。</p>
+</blockquote>
+<h2 id="远程-git-仓库实现多终端同步管理博客"><a href="#远程-git-仓库实现多终端同步管理博客" class="headerlink" title="远程 git 仓库实现多终端同步管理博客"></a>远程 git 仓库实现多终端同步管理博客</h2><p>在搭建完成后，安装<code>hexo-deployer-git</code>插件将网站部署到github上后，可以看到远程仓库中只是上传了站点目录中 public 下的部分。因此当你在别的电脑上，就不可能通过 clone github pages 仓库来实现对<br>博客的管理。因此就需要：</p>
+<h3 id="1-将站点目录上传-git-远程仓库"><a href="#1-将站点目录上传-git-远程仓库" class="headerlink" title="1. 将站点目录上传 git 远程仓库"></a>1. 将站点目录上传 git 远程仓库</h3><p>首先是创建远程 git 仓库，然后在站点目录下 git bash here 并使用以下命令</p>
+<pre><code>$ git init
+$ git remote add [shortname] [url]
+</code></pre><p>将站点目录与远程仓库关联，使用<code>$ git remote -v</code>可查看结果。<br>当关联成功后，就可以将本地内容上传了</p>
+<pre><code>$ git add .
+$ git commit -m [提交说明]
+$ git push origin master
+</code></pre><blockquote>
+<p>我没有选择像第二篇博客中那样，使用 git 分支来保存，而是重新新建一个仓库。完全是因为对于我这样的小白来说，这样更加便于管理。</p>
+</blockquote>
+<h3 id="2-Git-Submodule-链接主题仓库"><a href="#2-Git-Submodule-链接主题仓库" class="headerlink" title="2. Git Submodule 链接主题仓库"></a>2. Git Submodule 链接主题仓库</h3><p>在我将站点目录上传之后，我发现了一个问题。我使用的主题next是通过github下载的最新库（详见next主题的官方文档），在上传到远程仓库时只有一个空文件夹。在搜索后发现，如果在远程仓库中使用了第三方库需要通过<code>git submodule</code>关联到第三方库的github地址。因此，简单总结一下使用方法。</p>
+<blockquote>
+<ol>
+<li><a href="http://linlexus.com/git-submodule-usage/" target="_blank" rel="external">如何使用 Git Submodule</a></li>
+<li><a href="https://gaohaoyang.github.io/2015/04/12/Syncing-a-fork/" target="_blank" rel="external">同步一个 fork</a></li>
+</ol>
+</blockquote>
+<p>以上是参考的博客。</p>
+<p>使用下面的 git 命令新增一个 Submodule 库。</p>
+<pre><code>$ git submodule add (repository) (directory) 
+</code></pre><p>注意<code>repository</code>指的是第三方库的地址，<code>directory</code>指用来存放代码的文件夹名称。命令<code>git submodule status</code>会告诉你这个 submodule 已经被注册了并且指向了哪一个commit.同时，使用<code>git status</code>可以查看库中的变化。接下来只要将改变提交并推送到远程仓库就可以了。而且，git 的常用命令都可以在这个库中使用，所以更新等操作也非常方便。更多的具体操作可参考第一篇博客。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>到此为止，我的博客基本搭建完毕。</p>
+<blockquote>
+<p>在搭建完博客后，偶然在网上搜到一篇类似的博客<br><a href="http://www.imooc.com/article/9707" target="_blank" rel="external">Hexo搭建博客并实现多终端同步管理</a></p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/hexo/" rel="tag"># hexo</a>
+          
+            <a href="/tags/git/" rel="tag"># git</a>
+          
+            <a href="/tags/markdown/" rel="tag"># markdown</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/08/optimizationAS/" rel="next" title="优化 AS 编译速度以及初识 Freeline">
+                <i class="fa fa-chevron-left"></i> 优化 AS 编译速度以及初识 Freeline
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="gn_139" />
+          <p class="site-author-name" itemprop="name">gn_139</p>
+           
+              <p class="site-description motion-element" itemprop="description">小白的读后感</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/gn139" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#博客搭建过程记录与总结"><span class="nav-number">1.</span> <span class="nav-text">博客搭建过程记录与总结</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo-GitHub-pages"><span class="nav-number">1.1.</span> <span class="nav-text">Hexo + GitHub pages</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-github-pages"><span class="nav-number">1.1.1.</span> <span class="nav-text">1. github pages</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-hexo"><span class="nav-number">1.1.2.</span> <span class="nav-text">2. hexo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#远程-git-仓库实现多终端同步管理博客"><span class="nav-number">1.2.</span> <span class="nav-text">远程 git 仓库实现多终端同步管理博客</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-将站点目录上传-git-远程仓库"><span class="nav-number">1.2.1.</span> <span class="nav-text">1. 将站点目录上传 git 远程仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Git-Submodule-链接主题仓库"><span class="nav-number">1.2.2.</span> <span class="nav-text">2. Git Submodule 链接主题仓库</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.3.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">gn_139</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

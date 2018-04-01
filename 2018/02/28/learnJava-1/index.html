@@ -1,0 +1,865 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="java," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="运算符的分类？各种运算符的使用方法？什么是表达式？程序运行流程的分类？什么是 if else 分支结构？什么是switch分支结构？什么是循环结构？什么是 for 循环语句？什么是 while 循环语句？">
+<meta name="keywords" content="java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java 笔记（2）">
+<meta property="og:url" content="http://yoursite.com/2018/02/28/learnJava-1/index.html">
+<meta property="og:site_name" content="gn_139的博客">
+<meta property="og:description" content="运算符的分类？各种运算符的使用方法？什么是表达式？程序运行流程的分类？什么是 if else 分支结构？什么是switch分支结构？什么是循环结构？什么是 for 循环语句？什么是 while 循环语句？">
+<meta property="og:image" content="http://yoursite.com/2018/02/28/learnJava-1/d50735fae6cd7b89c5d58ad70b2442a7d9330e2c.jpg">
+<meta property="og:updated_time" content="2018-03-13T08:37:51.703Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java 笔记（2）">
+<meta name="twitter:description" content="运算符的分类？各种运算符的使用方法？什么是表达式？程序运行流程的分类？什么是 if else 分支结构？什么是switch分支结构？什么是循环结构？什么是 for 循环语句？什么是 while 循环语句？">
+<meta name="twitter:image" content="http://yoursite.com/2018/02/28/learnJava-1/d50735fae6cd7b89c5d58ad70b2442a7d9330e2c.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/02/28/learnJava-1/"/>
+
+
+
+
+
+  <title> Java 笔记（2） | gn_139的博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?b4a4967d41c047b1ecd90f89c5899f89";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">gn_139的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">技术相关</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/28/learnJava-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="gn_139">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="gn_139的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Java 笔记（2）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-28T15:36:00+08:00">
+                2018-02-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android-补完计划/" itemprop="url" rel="index">
+                    <span itemprop="name">Android 补完计划</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android-补完计划/Java-学习/" itemprop="url" rel="index">
+                    <span itemprop="name">Java 学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>运算符的分类？各种运算符的使用方法？什么是表达式？程序运行流程的分类？什么是 if else 分支结构？什么是switch分支结构？什么是循环结构？什么是 for 循环语句？什么是 while 循环语句？<br><a id="more"></a></p>
+<h1 id="Java-中的运算符"><a href="#Java-中的运算符" class="headerlink" title="Java 中的运算符"></a>Java 中的运算符</h1><ul>
+<li>算术运算符：<code>+, -, *, /, %, ++，--</code>;</li>
+<li>关系运算符：<code>&gt;, &lt;, &gt;=, &lt;=, ==, !=</code>;</li>
+<li>布尔逻辑运算符：<code>!, &amp;, |, ^, &amp;&amp;, ||</code>;</li>
+<li>位运算符：<code>&amp;, |, ^, ~, &gt;&gt;, &lt;&lt;, &gt;&gt;&gt;</code>;</li>
+<li>赋值运算符：<code>=</code>;</li>
+<li>扩展赋值运算符：<code>+=, -=, *=, /=</code>;</li>
+<li>字符串连接运算符：<code>+</code>;</li>
+</ul>
+<h2 id="算术运算符"><a href="#算术运算符" class="headerlink" title="算术运算符"></a>算术运算符</h2><ul>
+<li><p>要点1 <code>int i = 3 / 2;</code> 求i值；（思考 <code>double d = 3 / 2</code>）</p>
+</li>
+<li><p>要点2 <code>i++</code> 与 <code>++i</code> 的区别；（<code>i++</code>先参加运算再增大，<code>++i</code>先增大再参加运算）</p>
+</li>
+</ul>
+<p>运行以下代码可说明问题：</p>
+<pre><code>int i = 2;
+int a = 2;
+int j = i++ + 5; //可按顺序分解为 int j = i + 5; i = i + 1;
+int x = ++a + 5; //可按顺序分解为 a = a + 1; int x = a + 5；
+System.out.println(&quot;a = 2, i = 2, j = i++ + 5 =&quot;+j);
+System.out.println(&quot;x = ++a + 5 =&quot;+x);
+System.out.println(&quot;a = &quot;+a);
+System.out.println(&quot;i = &quot;+i);
+</code></pre><h2 id="关系运算符"><a href="#关系运算符" class="headerlink" title="关系运算符"></a>关系运算符</h2><p><code>boolean b = i &gt; j</code> 关系运算符的运算结果为布尔值。（思考 <code>boolean b = i == j</code>）</p>
+<h2 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h2><p>!–逻辑非   &amp;–逻辑与   |–逻辑或<br>^–逻辑异或 &amp;&amp;–短路与  ||–短路或</p>
+<p>逻辑异或指两个关系运算同为真或同为假时其值为假，不同时为真。<br>使用短路与时，当第一个条件判断为假后，就停止运行，而短路或正好相反，当第一个判断为真时停止。</p>
+<h2 id="扩展赋值运算符"><a href="#扩展赋值运算符" class="headerlink" title="扩展赋值运算符"></a>扩展赋值运算符</h2><pre><code>i += 5; //同 i = i + 5
+i -= 5; //同 i = i - 5
+i *= 5; //同 i = i * 5
+i /= 5; //同 i = i / 5
+</code></pre><h1 id="表达式的类型和值"><a href="#表达式的类型和值" class="headerlink" title="表达式的类型和值"></a>表达式的类型和值</h1><ul>
+<li><strong>表达式</strong> 是符合一定语法规则的运算符和操作符的序列。</li>
+<li><strong>表达式的值</strong> 是对表达式中的操作数进行运算得到的结果。</li>
+<li><strong>表达式的类型</strong> 是表达式的值的类型。</li>
+</ul>
+<h1 id="程序运行流程的分类"><a href="#程序运行流程的分类" class="headerlink" title="程序运行流程的分类"></a>程序运行流程的分类</h1><ol>
+<li>顺序结构</li>
+<li>分支结构（即图中选择结构）</li>
+<li>循环结构</li>
+</ol>
+<p>如下图：</p>
+<img src="/2018/02/28/learnJava-1/d50735fae6cd7b89c5d58ad70b2442a7d9330e2c.jpg" alt="d50735fae6cd7b89c5d58ad70b2442a7d9330e2c.jpg" title="">
+<h1 id="if-else-结构"><a href="#if-else-结构" class="headerlink" title="if else 结构"></a>if else 结构</h1><p>语法结构（一）:</p>
+<pre><code>if (布尔类型表达式){
+    语句一；
+    语句二；
+    ......
+}
+</code></pre><p>语法结构（二）:</p>
+<pre><code>if(布尔类型表达式){
+    语句一；
+    语句二；
+    ......
+}else{
+    语句三；
+    语句四；
+    ......
+}
+</code></pre><p>语法结构（三）：</p>
+<pre><code>if(布尔类型表达式){
+    语句一；
+    语句二；
+    ......
+}else if(布尔类型表达式){
+    语句三；
+    语句四；
+    ......
+}else if(布尔类型表达式){
+    语句五；
+    语句六；
+    ......
+}else{
+    语句七；
+    语句八；
+    ......
+}
+</code></pre><h1 id="switch-结构"><a href="#switch-结构" class="headerlink" title="switch 结构"></a>switch 结构</h1><pre><code>switch(表达式){
+    case 常量1：
+        语句1;
+        break;
+    case 常量2：
+        语句2;
+        break;
+    ......
+    case 常量N:
+        语句N;
+        break;
+    [default:
+        默认语句;
+        break;]
+}
+</code></pre><p>其中 <strong>表达式</strong> 只允许四种类型：byte，int，char，short（<a href="http://blog.csdn.net/qq_36411874/article/details/70946269" target="_blank" rel="external">在 Java 的1.7之后的 Jdk 版本，Java 中的 switch 里面表达式的类型可以是 string 类型。</a>）</p>
+<p>注意：如果没有 <code>break</code> 一旦表达式的值匹配正确后，假设值为常量2就会运行语句2~语句N，不再进行判断直到下一个<code>break</code>或没有语句后为止。</p>
+<h1 id="循环结构"><a href="#循环结构" class="headerlink" title="循环结构"></a>循环结构</h1><p>此处为图</p>
+<h1 id="for-循环语句"><a href="#for-循环语句" class="headerlink" title="for 循环语句"></a>for 循环语句</h1><pre><code>for (赋值;布尔表达式;变化){
+    语句1;
+    ......
+    语句N;
+}
+</code></pre><p>大括号内为 <strong>循环体</strong>。执行过程为，先赋值再执行布尔表达式，当为真时执行循环体并执行变化语句，当为假时跳过循环体并停止循环。</p>
+<h1 id="while-循环语句"><a href="#while-循环语句" class="headerlink" title="while 循环语句"></a>while 循环语句</h1><pre><code>while(布尔表达式){
+    语句1;
+    ......
+    语句N;
+}
+</code></pre><p>执行过程为，先执行布尔表达式，当为真时执行循环体再执行布尔表达式，直到表达式的值为假时停止循环。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/28/butterKnife/" rel="next" title="Error:Execution failed for task ':app:javaPreCompileDebug'.">
+                <i class="fa fa-chevron-left"></i> Error:Execution failed for task ':app:javaPreCompileDebug'.
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/02/27/relativePath/" rel="prev" title="路径相关">
+                路径相关 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="gn_139" />
+          <p class="site-author-name" itemprop="name">gn_139</p>
+           
+              <p class="site-description motion-element" itemprop="description">小白的读后感</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/gn139" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Java-中的运算符"><span class="nav-number">1.</span> <span class="nav-text">Java 中的运算符</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#算术运算符"><span class="nav-number">1.1.</span> <span class="nav-text">算术运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关系运算符"><span class="nav-number">1.2.</span> <span class="nav-text">关系运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#逻辑运算符"><span class="nav-number">1.3.</span> <span class="nav-text">逻辑运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#扩展赋值运算符"><span class="nav-number">1.4.</span> <span class="nav-text">扩展赋值运算符</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#表达式的类型和值"><span class="nav-number">2.</span> <span class="nav-text">表达式的类型和值</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#程序运行流程的分类"><span class="nav-number">3.</span> <span class="nav-text">程序运行流程的分类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#if-else-结构"><span class="nav-number">4.</span> <span class="nav-text">if else 结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#switch-结构"><span class="nav-number">5.</span> <span class="nav-text">switch 结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#循环结构"><span class="nav-number">6.</span> <span class="nav-text">循环结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#for-循环语句"><span class="nav-number">7.</span> <span class="nav-text">for 循环语句</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#while-循环语句"><span class="nav-number">8.</span> <span class="nav-text">while 循环语句</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">gn_139</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

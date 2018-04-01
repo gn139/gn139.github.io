@@ -1,0 +1,844 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="java,线程,内部类,同步,数组," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="什么是内部类？如何使用？匿名内部类如何使用？什么是进程？什么是线程？多线程程序如何运行？如何定义线程？控制线程的常用函数？多线程数据安全？同步线程的方法？数组有哪些类型？数组如何定义？数组如何操作？">
+<meta name="keywords" content="java,线程,内部类,同步,数组">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java 笔记（6）">
+<meta property="og:url" content="http://yoursite.com/2018/03/15/learnJava-5/index.html">
+<meta property="og:site_name" content="gn_139的博客">
+<meta property="og:description" content="什么是内部类？如何使用？匿名内部类如何使用？什么是进程？什么是线程？多线程程序如何运行？如何定义线程？控制线程的常用函数？多线程数据安全？同步线程的方法？数组有哪些类型？数组如何定义？数组如何操作？">
+<meta property="og:image" content="http://yoursite.com/2018/03/15/learnJava-5/001.jpg">
+<meta property="og:updated_time" content="2018-03-20T04:33:05.710Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java 笔记（6）">
+<meta name="twitter:description" content="什么是内部类？如何使用？匿名内部类如何使用？什么是进程？什么是线程？多线程程序如何运行？如何定义线程？控制线程的常用函数？多线程数据安全？同步线程的方法？数组有哪些类型？数组如何定义？数组如何操作？">
+<meta name="twitter:image" content="http://yoursite.com/2018/03/15/learnJava-5/001.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/03/15/learnJava-5/"/>
+
+
+
+
+
+  <title> Java 笔记（6） | gn_139的博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?b4a4967d41c047b1ecd90f89c5899f89";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">gn_139的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">技术相关</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/15/learnJava-5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="gn_139">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="gn_139的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Java 笔记（6）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-15T19:37:07+08:00">
+                2018-03-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android-补完计划/" itemprop="url" rel="index">
+                    <span itemprop="name">Android 补完计划</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android-补完计划/Java-学习/" itemprop="url" rel="index">
+                    <span itemprop="name">Java 学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>什么是内部类？如何使用？匿名内部类如何使用？什么是进程？什么是线程？多线程程序如何运行？如何定义线程？控制线程的常用函数？多线程数据安全？同步线程的方法？数组有哪些类型？数组如何定义？数组如何操作？<br><a id="more"></a></p>
+<h1 id="内部类"><a href="#内部类" class="headerlink" title="内部类"></a>内部类</h1><p>在类文件中再定义一个类，这个类就称为 <strong>内部类</strong>。</p>
+<p>特点：</p>
+<ol>
+<li>含有内部类的类编译会生成两个文件 <code>类名.class</code> 和 <code>类名$内部类.class</code>；</li>
+<li>要生成内部类对象必须首先有一个外部类对象存在，例 <code>A.B b = new A().new B();</code> 其中B为内部类；</li>
+<li>内部类可以直接使用外部类成员；</li>
+</ol>
+<p><strong>匿名内部类</strong> 就是没有名字的内部类，例子如下</p>
+<pre><code>//匿名内部类
+b.fun(new Aa() {
+    @Override
+    public void doSomething() {
+        System.out.println(&quot;匿名内部类&quot;);
+    }
+});
+</code></pre><p>其中 Aa 为一个接口，b.fun() 的参数为一个Aa的实现类，此时直接 new Aa() 并实现方法产生的对象就是一个匿名内部类的对象。</p>
+<h1 id="多线程和多进程"><a href="#多线程和多进程" class="headerlink" title="多线程和多进程"></a>多线程和多进程</h1><p><strong>多进程</strong> ：在操作系统中能（同时）运行多个任务（程序）。（一个进程代表一个程序在运行）</p>
+<p><strong>多线程</strong> ：在同一应用程序中有多个顺序流（同时）执行。（线程是进程当中的一个程序执行流程）</p>
+<h1 id="线程的执行过程"><a href="#线程的执行过程" class="headerlink" title="线程的执行过程"></a>线程的执行过程</h1><img src="/2018/03/15/learnJava-5/001.jpg" alt="001.jpg" title="">
+<p>步骤</p>
+<ol>
+<li>生成线程（new一个线程）；</li>
+<li>进入就绪状态（Runable）；</li>
+<li>获得 cpu 执行后进入运行状态（Running）；</li>
+<li>失去 cpu 后再次进入就绪状态；</li>
+<li>遇到阻塞事件时进入阻塞状态（Blocked）；</li>
+<li>解除阻塞后再次进入就绪状态；</li>
+<li>运行完成后进入死亡状态（Dead）；</li>
+</ol>
+<h1 id="创建线程的方法"><a href="#创建线程的方法" class="headerlink" title="创建线程的方法"></a>创建线程的方法</h1><ul>
+<li>方式1：定义一个线程类，它继承类 <code>Thread</code> 并重写其中的方法 <code>run()</code>,方法 <code>run()</code> 又称为线程体，在创建对象后使用 <code>start()</code> 进入就绪状态；（由于 Java 只支持单继承，用这种方法定义的类不能再继承其他类）</li>
+<li>方式2：提供一个实现接口 <code>Runnable</code> 的类作为线程的目标对象，在初始化一个 <code>Thread</code> 类或者其子类的线程对象时，把目标对象传递给这个线程实例，由该目标对象提供线程体；（常用匿名内部类的方法）</li>
+</ul>
+<p>注意：千万不能直接使用 <code>run()</code> 来启动线程，而应该用 <code>start()</code>；在实际开发过程中更倾向于使用接口而不是继承。</p>
+<h1 id="线程的简单控制方法"><a href="#线程的简单控制方法" class="headerlink" title="线程的简单控制方法"></a>线程的简单控制方法</h1><ul>
+<li>中断线程：<ul>
+<li><code>Thread.sleep(参数)</code> 线程体当中调用时，当前线程根据参数休眠（阻塞状态）后再进入就绪状态，单位为 ms； </li>
+<li><code>Thread.yield()</code> 线程体当中调用时，当前线程在运行状体会让出 cpu 进入就绪状态；</li>
+</ul>
+</li>
+<li>设置程序优先级：(线程的优先级最大是10，最小是1)<ul>
+<li><code>getPriority()</code> 通过线程对象调用可返回线程的优先级数值；</li>
+<li><code>setPriority(参数)</code> 通过线程对象调用，并根据参数设置优先级（可使用 <code>Thread</code> 静态变量）；</li>
+</ul>
+</li>
+</ul>
+<p>注意：设置优先级只能提高运行概率，不能决定是否先运行。</p>
+<h1 id="多线程数据安全"><a href="#多线程数据安全" class="headerlink" title="多线程数据安全"></a>多线程数据安全</h1><p>在多线程访问同一数据时容易出现数据安全问题，需要使用 <strong>同步代码块</strong> <code>synchronized(this/类实例对象) {...}</code> （其中的 <code>this/对象</code> 被称为 <em>同步锁</em>）  </p>
+<p>注意：每一个线程都有名字，可以通过 <code>setName()</code> 方法设置，通过 <code>getName()</code> 方法获取；可以通过 <code>currentThread()</code> 获取当前正在执行的线程对象的引用；</p>
+<h1 id="同步语法"><a href="#同步语法" class="headerlink" title="同步语法"></a>同步语法</h1><ul>
+<li>一旦一个线程获得了一个对象的同步锁，这个对象的其他使用该对象同步锁的代码不能被其他线程使用；</li>
+<li>将 <code>synchronized</code> 放在方法定义中后该方法就是同步方法；（同步方法的同步锁是 <code>this</code>）</li>
+<li>同步锁锁住的是对象；</li>
+</ul>
+<h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><p>以一个整型数组为例：</p>
+<pre><code>//数组的静态定义方法
+int[] arr = {1, 2, 3, 4};
+</code></pre><p>中括号可以放在变量名前，也可以放在变量名后；注意该数组的类型是整型数组类型，它的元素是整数类型；</p>
+<pre><code>arr[3] = 10;
+</code></pre><p>通过数组元素下标获取数组的元素（元素下标从0开始）来对数组进行一般操作；</p>
+<pre><code>arr.length
+</code></pre><p>通过 <code>length</code> 属性可以获得数组的长度；</p>
+<pre><code>//数组的动态定义方法
+int[] arr = new int[10];
+</code></pre><p>用 <code>new</code> 来动态创建数组，并在中括号中声明数组的长度大小（这样创建的整型数组其默认值为0）；</p>
+<pre><code>//二维数组的定义方法
+int[][] arr = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+arr[0][0] = 0;
+</code></pre><p>二维数组中外层数组的元素是内层数组，因此左边的中括号中的下标代表第几个内层数组，右边中括号中的下标代表第几个内层数组的元素；</p>
+<pre><code>int[][] arr = new int[3][5];
+</code></pre><p>动态声明二维数组，该声明定义有三个内层数组，每个数组有5个元素；</p>
+<pre><code>for (int i = 0; i &lt; arr.length; i++){
+        for (int j = 0; j &lt; arr[i].length; j++){
+            System.out.println(arr[i][j]);
+        }
+    }
+</code></pre><p>循环二维数组的方法如上；</p>
+<p>注意：数组一旦被声明后其长度固定不可改变；数组的元素必须保持一致。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+            <a href="/tags/线程/" rel="tag"># 线程</a>
+          
+            <a href="/tags/内部类/" rel="tag"># 内部类</a>
+          
+            <a href="/tags/同步/" rel="tag"># 同步</a>
+          
+            <a href="/tags/数组/" rel="tag"># 数组</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/15/cycleKnowledge/" rel="next" title="关于 Java 变量声明在循环体内和循环体外">
+                <i class="fa fa-chevron-left"></i> 关于 Java 变量声明在循环体内和循环体外
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/14/learnJava-4/" rel="prev" title="Java笔记（5）">
+                Java笔记（5） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="gn_139" />
+          <p class="site-author-name" itemprop="name">gn_139</p>
+           
+              <p class="site-description motion-element" itemprop="description">小白的读后感</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/gn139" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#内部类"><span class="nav-number">1.</span> <span class="nav-text">内部类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#多线程和多进程"><span class="nav-number">2.</span> <span class="nav-text">多线程和多进程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#线程的执行过程"><span class="nav-number">3.</span> <span class="nav-text">线程的执行过程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建线程的方法"><span class="nav-number">4.</span> <span class="nav-text">创建线程的方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#线程的简单控制方法"><span class="nav-number">5.</span> <span class="nav-text">线程的简单控制方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#多线程数据安全"><span class="nav-number">6.</span> <span class="nav-text">多线程数据安全</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#同步语法"><span class="nav-number">7.</span> <span class="nav-text">同步语法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数组"><span class="nav-number">8.</span> <span class="nav-text">数组</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">gn_139</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
